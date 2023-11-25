@@ -10,8 +10,12 @@ $routes = [
 
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
-if (isset($routes[$uri])) {
+if (array_key_exists($uri, $routes)) {
     require $routes[$uri];
 } else {
-    require 'controllers/404.php';
+    http_response_code(404);
+
+    require 'views/404.view.php';
+
+    die();
 }
