@@ -6,8 +6,8 @@ $uri = $_SERVER['REQUEST_URI'];
 
 if ($uri === '/') {
     require 'controllers/index.php';
-} elseif ($uri === '/about.php') {
+} else if ($uri === '/about') {
     require 'controllers/about.php';
-} elseif ($uri === '/contact.php') {
+} else if ($uri === '/contact') {
     require 'controllers/contact.php';
 } 

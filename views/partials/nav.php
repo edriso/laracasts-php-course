@@ -2,8 +2,8 @@
 
 $links = [
     ['name' => 'Home', 'href' => '/'],
-    ['name' => 'About', 'href' => '/about.php'],
-    ['name' => 'Contact', 'href' => '/contact.php'],
+    ['name' => 'About', 'href' => '/about'],
+    ['name' => 'Contact', 'href' => '/contact'],
 ];
 
 ?>
