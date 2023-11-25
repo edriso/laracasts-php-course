@@ -2,12 +2,16 @@
 
 require 'functions.php';
 
-$uri = $_SERVER['REQUEST_URI'];
+$routes = [
+    '/' => 'controllers/index.php',
+    '/about' => 'controllers/about.php',
+    '/contact' => 'controllers/contact.php',
+];
 
-if ($uri === '/') {
-    require 'controllers/index.php';
-} else if ($uri === '/about') {
-    require 'controllers/about.php';
-} else if ($uri === '/contact') {
-    require 'controllers/contact.php';
-} 
+$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+
+if (isset($routes[$uri])) {
+    require $routes[$uri];
+} else {
+    require 'controllers/404.php';
+}
