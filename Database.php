@@ -20,13 +20,12 @@ class Database {
         ]);
     }
 
-    public function query($query)
+    public function query($query, $params = [])
     {
         $statement = $this->connection->prepare($query);
-        $statement->execute();
+
+        $statement->execute($params);
 
         return $statement;
-        // return $statement->fetchAll(PDO::FETCH_ASSOC);
-        // return $statement->fetch(PDO::FETCH_ASSOC); // fetches single record
     }
 }

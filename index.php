@@ -8,8 +8,16 @@ $config = require('config.php');
 
 $db = new Database($config['database']);
 
-$posts = $db->query('SELECT * FROM posts')->fetchAll();
+$id = $_GET['id'] ?? '1';
 
-foreach ($posts as $post) {
-    echo "<li>{$post['title']}</li>";
-}
+$query = "SELECT * FROM posts where id = ?";
+
+$post = $db->query($query, [$id])->fetch(); //fetches single record
+// $posts = $db->query($query)->fetchAll();
+
+//another way
+// $query = "SELECT * FROM posts where id = :id";
+// $post = $db->query($query, ['id' => $id])->fetch();
+// $post = $db->query($query, [':id' => $id])->fetch();
+
+echo "<li>{$post['title']}</li>";
