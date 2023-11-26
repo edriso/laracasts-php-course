@@ -5,7 +5,17 @@ $db = new Database($config['database']);
 
 $heading = 'My Notes';
 
-$query = "SELECT * FROM notes WHERE user_id = 4 AND id = :id";
-$note = $db->query($query, ['id' => $_GET['id']])->fetch(); 
+$note = $db->query('SELECT * FROM notes WHERE id = :id', [
+    'id' => $_GET['id']
+])->fetch();
+
+if(!$note) {
+    abort();
+}
+
+$currentUserId = 1; // created a variable to prevent a magic number
+if($note['user_id'] !== $currentUserId) {
+    abort(403);
+}
 
 require 'views/note.view.php';
