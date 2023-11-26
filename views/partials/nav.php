@@ -2,6 +2,7 @@
 
 $links = [
     ['name' => 'Home', 'href' => '/'],
+    ['name' => 'Notes', 'href' => '/notes'],
     ['name' => 'About', 'href' => '/about'],
     ['name' => 'Contact', 'href' => '/contact'],
 ];
