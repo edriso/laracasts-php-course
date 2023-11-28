@@ -67,7 +67,8 @@ $links = [
                             <!-- Active: "bg-gray-100", Not Active: "" -->
                             <form method="POST" action="/session">
                                 <input type="hidden" name="_method" value="DELETE">
-                                <button class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1">Log
+                                <button type="submit" class="text-left w-full block px-4 py-2 text-sm text-gray-700"
+                                    role="menuitem" tabindex="-1">Log
                                     out</button>
 
                             </form>
