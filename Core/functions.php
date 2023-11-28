@@ -42,3 +42,27 @@ function view($path, $attributes = [])
     
     require(base_path('views/' . $path . '.view.php'));
 }
+
+function login ($user)
+{
+    $_SESSION['user'] = [
+        'email' => $user['email']
+    ];
+
+    header('location: /');
+    
+    exit();
+}
+
+function logout ()
+{
+    $_SESSION = [];
+
+    session_destroy();
+
+    $params = session_get_cookie_params();
+    setcookie('PHPSESSID', '', time() - 3600, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+
+    header('Location: /');
+    exit();
+}
