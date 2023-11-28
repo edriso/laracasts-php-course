@@ -11,7 +11,7 @@ class Middleware
 
     public static function resolve($key) {
         if (!$key) return;
-            // return self::MAP[$key];
+
         $middleware = self::MAP[$key] ?? NULL;
 
         if (! $middleware) {
