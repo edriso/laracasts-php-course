@@ -15,7 +15,7 @@
             <p class="text-red-500 text-xs mb-2 text-center"><?= $errors['email_or_password'] ?></p>
             <?php endif; ?>
 
-            <form class="space-y-6" action="/sessions" method="POST">
+            <form class="space-y-6" action="/session" method="POST">
                 <div>
                     <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
                     <div class="mt-2">

@@ -18,7 +18,7 @@ if (! Validator::string($password)) {
 }
 
 if (count($errors)) {
-    return view('sessions/create', [
+    return view('session/create', [
         'heading'=> 'Log in',
         'errors'=> $errors,
      ]);
@@ -33,7 +33,7 @@ $user = $db->query('SELECT * FROM users WHERE email = :email', [
 if (! $user || ! password_verify($password, $user['password'])) {
     $errors['email_or_password'] = 'No matching account found for the email address and password.';
 
-    return view('sessions/create', [
+    return view('session/create', [
         'heading'=> 'Log in',
         'errors'=> $errors,
      ]);
