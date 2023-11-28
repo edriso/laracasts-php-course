@@ -91,15 +91,13 @@ $links = [
     </div>
 
     <!-- Mobile menu, show/hide based on menu state. -->
-    <div class="md:hidden" id="mobile-menu">
-        <div class="md:hidden" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <?php foreach ($links as $link) : ?>
-                <a href="<?= $link['href'] ?>"
-                    class="<?= urlIs($link['href']) ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> block rounded-md px-3 py-2 text-base font-medium"
-                    aria-current="page"><?= $link['name'] ?></a>
-                <?php endforeach; ?>
-            </div>
+    <div class="md:hidden hidden" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <?php foreach ($links as $link) : ?>
+            <a href="<?= $link['href'] ?>"
+                class="<?= urlIs($link['href']) ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> block rounded-md px-3 py-2 text-base font-medium"
+                aria-current="page"><?= $link['name'] ?></a>
+            <?php endforeach; ?>
         </div>
 
         <div class="border-t border-gray-700 pb-3 pt-4">
