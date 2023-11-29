@@ -20,6 +20,7 @@ $links = [
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
                         <?php foreach ($links as $link) : ?>
+                        <?php if (($link['name'] === 'Notes') && (! isset($_SESSION['user']))) continue; ?>
                         <a href="<?= $link['href'] ?>"
                             class="<?= urlIs($link['href']) ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium"
                             aria-current="page"><?= $link['name'] ?></a>
@@ -94,6 +95,7 @@ $links = [
     <div class="md:hidden hidden" id="mobile-menu">
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <?php foreach ($links as $link) : ?>
+            <?php if (($link['name'] === 'Notes') && (! isset($_SESSION['user']))) continue; ?>
             <a href="<?= $link['href'] ?>"
                 class="<?= urlIs($link['href']) ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> block rounded-md px-3 py-2 text-base font-medium"
                 aria-current="page"><?= $link['name'] ?></a>
