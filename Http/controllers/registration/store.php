@@ -1,6 +1,7 @@
 <?php
 
 use Core\App;
+use Core\Authenticator;
 use Core\Database;
 use Core\Validator;
 
@@ -14,7 +15,7 @@ if (! Validator::email($email)) {
 }
 
 if (! Validator::string($password, 7, 255)) {
-    $errors['email'] = 'Please provide a password of at least seven characters.';
+    $errors['password'] = 'Please provide a password of at least seven characters.';
 }
 
 if (count($errors)) {
@@ -44,9 +45,8 @@ $db->query('INSERT INTO users(email, password) VALUES(:email, :password)', [
     'password'=> password_hash($password, PASSWORD_BCRYPT)
 ]);
 
-login([
+(new Authenticator)->login([
     'email' => $email
 ]);
 
-header('location: /');
-exit();
+redirect('/');

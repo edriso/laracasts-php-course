@@ -21,8 +21,13 @@ class LoginForm
         return empty($this->errors);
     }
 
-    public function getErrors()
+    public function errors()
     {
         return $this->errors;
+    }
+
+    public function error($path, $message)
+    {
+        $this->errors[$path] = $message;
     }
 }
