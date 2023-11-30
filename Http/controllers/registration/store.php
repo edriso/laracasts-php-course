@@ -10,20 +10,20 @@ $password = $_POST['password'];
 
 $form = new RegisterForm();
 
-if (! $form->validate($email, $password)) {
-    return view('registration/create', [
-        'heading'=> 'Register',
-        'errors'=> $form->errors(),
+if ($form->validate($email, $password)) {
+    (App::resolve(Database::class))->query('INSERT INTO users(email, password) VALUES(:email, :password)', [
+        'email'=> $email,
+        'password'=> password_hash($password, PASSWORD_BCRYPT)
     ]);
+    
+    (new Authenticator)->login([
+        'email' => $email
+    ]);
+    
+    redirect('/');
 }
 
-(App::resolve(Database::class))->query('INSERT INTO users(email, password) VALUES(:email, :password)', [
-    'email'=> $email,
-    'password'=> password_hash($password, PASSWORD_BCRYPT)
+return view('registration/create', [
+    'heading'=> 'Register',
+    'errors'=> $form->errors(),
 ]);
-
-(new Authenticator)->login([
-    'email' => $email
-]);
-
-redirect('/');
