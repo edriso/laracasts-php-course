@@ -1,46 +1,23 @@
 <?php
 
 use Core\App;
-use Core\Authenticator;
 use Core\Database;
-use Core\Validator;
+use Core\Authenticator;
+use Http\Forms\RegisterForm;
 
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-$errors = [];
+$form = new RegisterForm();
 
-if (! Validator::email($email)) {
-    $errors['email'] = 'Please provide a valid email address.';
-}
-
-if (! Validator::string($password, 7, 255)) {
-    $errors['password'] = 'Please provide a password of at least seven characters.';
-}
-
-if (count($errors)) {
+if (! $form->validate($email, $password)) {
     return view('registration/create', [
         'heading'=> 'Register',
-        'errors'=> $errors,
-     ]);
+        'errors'=> $form->errors(),
+    ]);
 }
 
-$db = App::resolve(Database::class);
-
-$is_email_exists = $db->query('SELECT * FROM users WHERE email = :email', [
-    'email' => $email,
-])->find();
-
-if ($is_email_exists) {
-    $errors['email'] = 'Email address already in use.';
-
-    return view('registration/create', [
-        'heading'=> 'Register',
-        'errors'=> $errors,
-     ]);
-}
-
-$db->query('INSERT INTO users(email, password) VALUES(:email, :password)', [
+(App::resolve(Database::class))->query('INSERT INTO users(email, password) VALUES(:email, :password)', [
     'email'=> $email,
     'password'=> password_hash($password, PASSWORD_BCRYPT)
 ]);

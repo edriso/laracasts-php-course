@@ -26,8 +26,8 @@ class LoginForm
         return $this->errors;
     }
 
-    public function error($path, $message)
+    public function error($field, $message)
     {
-        $this->errors[$path] = $message;
+        $this->errors[$field] = $message;
     }
 }
