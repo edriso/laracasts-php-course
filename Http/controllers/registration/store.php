@@ -47,3 +47,6 @@ $db->query('INSERT INTO users(email, password) VALUES(:email, :password)', [
 login([
     'email' => $email
 ]);
+
+header('location: /');
+exit();

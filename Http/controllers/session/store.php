@@ -32,3 +32,6 @@ if (! $user || ! password_verify($password, $user['password'])) {
 }
 
 login($user);
+
+header('location: /');
+exit();
