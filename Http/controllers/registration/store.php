@@ -1,6 +1,7 @@
 <?php
 
 use Core\App;
+use Core\Session;
 use Core\Database;
 use Core\Authenticator;
 use Http\Forms\RegisterForm;
@@ -23,7 +24,6 @@ if ($form->validate($email, $password)) {
     redirect('/');
 }
 
-return view('registration/create', [
-    'heading'=> 'Register',
-    'errors'=> $form->errors(),
-]);
+Session::flash('errors', $form->errors());
+
+redirect('/register');
