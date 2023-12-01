@@ -27,11 +27,11 @@ $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
 try {
     $router->route($uri, $method);
 } catch (ValidationException $exception) {
-    Session::flash('errors', $exception->errors);
-    Session::flash('old', [
-        'email' => $attributes['email']
-    ]);
+    $oldValues = $exception->old;
+    unset($oldValues['password']);
 
+    Session::flash('errors', $exception->errors);
+    Session::flash('old', $oldValues);
     
     return redirect($router->previousUrl());
 }
