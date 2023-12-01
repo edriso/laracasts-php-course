@@ -12,6 +12,10 @@
       "Http\\": "Http/"
     }
   },
+  "scripts": {
+    "start": "php -S localhost:8888 -t public",
+    "test": "vendor/bin/test"
+  },
   "require": {
     "illuminate/collections": "^10.34"
   },
