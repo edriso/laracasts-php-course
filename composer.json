@@ -1,0 +1,16 @@
+{
+  "name": "edriso/php-simple-notes-app",
+  "authors": [
+    {
+      "name": "edriso",
+      "email": "edriso.dev@gmail.com"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Core\\": "Core/",
+      "Http\\": "Http/"
+    }
+  }
+}
