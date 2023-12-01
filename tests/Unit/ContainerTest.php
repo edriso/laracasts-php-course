@@ -18,4 +18,4 @@ test('it can resolve something out of the container', function () {
             //this is where you confirm whether or not it actually worked
         expect($result)->toBe('bar');
         expect($result)->toEqual('bar');
-})->only();
+});
